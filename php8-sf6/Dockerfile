@@ -24,7 +24,7 @@ RUN pecl install apcu && docker-php-ext-enable apcu
 
 RUN npm install --global yarn
 
-RUN git config --global user.email "nopainofromage2000@gmail.com" \
+RUN git config --global user.email "nopainnofromage2000@gmail.com" \
     &&  git config --global user.name "nopainnofromage"
 
 CMD tail -f /dev/null
