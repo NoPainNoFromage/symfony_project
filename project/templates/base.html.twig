@@ -4,6 +4,51 @@
         <meta charset="UTF-8">
         <title>{% block title %}Welcome!{% endblock %}</title>
         <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
+        <script src="https://cdn.tailwindcss.com"></script>
+        <style type="text/tailwindcss">
+            @layer utilities {
+                h1 {
+                    @apply text-3xl font-bold mb-4 pb-4 border-b-2;
+                }
+                a {
+                    @apply underline font-bold cursor-pointer mr-4;
+                }
+                label {
+                    @apply w-1/5 font-semibold;
+                }
+                input {
+                    @apply w-4/5 px-2;
+                }
+                .btn {
+                    @apply mt-4 px-5 py-1.5 rounded-lg font-semibold bg-stone-700 text-white hover:bg-white hover:text-stone-700;
+                }
+                form {
+                    @apply w-full my-4;
+                }
+                form > div {
+                    @apply w-full;
+                }
+                form > div > div {
+                    @apply flex mb-4;
+                }
+                table {
+                    @apply w-full my-4;
+                }
+                thead {
+                    @apply border-b;
+                }
+                th {
+                    @apply text-sm font-medium text-gray-900 px-6 py-4 text-left;
+                }
+
+                tr {
+                    @apply bg-white border-b transition duration-300 ease-in-out hover:bg-gray-300;
+                }
+                td {
+                    @apply text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap;
+                }
+            }
+        </style>
         {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
         {% block stylesheets %}
             {{ encore_entry_link_tags('app') }}
@@ -13,7 +58,10 @@
             {{ encore_entry_script_tags('app') }}
         {% endblock %}
     </head>
-    <body>
-        {% block body %}{% endblock %}
+    <body class="bg-gradient-to-b from-blue-500 to-purple-500 h-screen w-screen flex items-start justify-center p-10">
+        <div class="w-10/12">
+            {% block body %} 
+            {% endblock %}
+        </div>      
     </body>
 </html>
