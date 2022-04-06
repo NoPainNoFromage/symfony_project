@@ -14,7 +14,7 @@ RUN curl -sS https://getcomposer.org/installer | php -- \
 
 RUN curl -sS https://get.symfony.com/cli/installer | bash \
     &&  mv /root/.symfony/bin/symfony /usr/local/bin
-
+RUN docker-php-ext-configure pgsql -with-pgsql=/usr/include/postgresql/
 RUN docker-php-ext-configure \
             intl \
     &&  docker-php-ext-install \
