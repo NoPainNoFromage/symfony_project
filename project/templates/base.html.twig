@@ -32,10 +32,16 @@
                     @apply flex mb-4;
                 }
                 table {
-                    @apply w-full my-4;
+                    @apply w-full mb-4;
+                }
+                .table-wrapper {
+                    @apply overflow-auto max-h-[500px];
                 }
                 thead {
                     @apply border-b;
+                }
+                thead tr th {
+                    @apply sticky top-0 bg-white;
                 }
                 th {
                     @apply text-sm font-medium text-gray-900 px-6 py-4 text-left;
