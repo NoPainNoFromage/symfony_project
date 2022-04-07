@@ -6,9 +6,10 @@ use App\Entity\Lien;
 use App\Entity\Materiel;
 use App\Entity\Client;
 use Doctrine\Bundle\FixturesBundle\Fixture;
+use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
 
-class LienFixtures extends Fixture
+class LienFixtures extends Fixture implements OrderedFixtureInterface
 {
     public function load(ObjectManager $manager): void
     {
@@ -29,5 +30,13 @@ class LienFixtures extends Fixture
 
         }
         $manager->flush();
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getOrder()
+    {
+        return 3;
     }
 }

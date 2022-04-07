@@ -4,9 +4,10 @@ namespace App\DataFixtures;
 
 use App\Entity\Materiel;
 use Doctrine\Bundle\FixturesBundle\Fixture;
+use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
 
-class MaterielFixtures extends Fixture
+class MaterielFixtures extends Fixture implements OrderedFixtureInterface
 {
     public function load(ObjectManager $manager): void
     {
@@ -20,5 +21,13 @@ class MaterielFixtures extends Fixture
          }
 
         $manager->flush();
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getOrder()
+    {
+        return 2;
     }
 }
