@@ -70,6 +70,7 @@ class ClientRepository extends ServiceEntityRepository
             ->join('l.materiel', 'm')
             ->groupBy('c')
             ->having('SUM(l.quantite) > 30 and SUM(m.price) > 3000000')
+            ->orderBy('c.first_name')
             ->getQuery()
             ->getResult()
         ;
