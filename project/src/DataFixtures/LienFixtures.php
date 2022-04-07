@@ -20,7 +20,7 @@ class LienFixtures extends Fixture
             $materiels = $manager->getRepository(Materiel::class)->findby([],null,$limit=mt_rand(1,20),null);
             foreach($materiels as $materiel){
                 $lien = new Lien();
-                $lien->setQuantite(mt_rand(1,5));
+                $lien->setQuantite(mt_rand(1,50));
                 $lien->setClient($client);
                 $lien->setMateriel($materiel);
 

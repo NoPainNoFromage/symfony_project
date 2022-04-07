@@ -45,22 +45,36 @@ class ClientRepository extends ServiceEntityRepository
         }
     }
 
-    // /**
-    //  * @return Client[] Returns an array of Client objects
-    //  */
-    /*
-    public function findByExampleField($value)
+
+    // les enregistrements dont les clients ont plus de 30 matériels, et dont le matériel vendu est
+    // supérieur à 30.000 euros.
+
+    // select c.first_name, c.last_name, SUM(l.quantite) as qt, SUM(m.price) as prix
+    // from client c
+    // join lien l on c.id = l.client_id
+    // join materiel m on m.id = l.materiel_id
+    // Group by c.first_name, c.last_name
+    // HAVING SUM(l.quantite)> 30 and SUM(m.price) > 3000000
+    // order by c.id;
+
+
+
+    /**
+     * @return Client[] Returns an array of Client objects
+    */
+    public function findClientWithExpensiveMateriel()
     {
         return $this->createQueryBuilder('c')
-            ->andWhere('c.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('c.id', 'ASC')
-            ->setMaxResults(10)
+            ->select('c as client, SUM(l.quantite) as qt, SUM(m.price) as prix')
+            ->join('c.liens', 'l')
+            ->join('l.materiel', 'm')
+            ->groupBy('c')
+            ->having('SUM(l.quantite) > 30 and SUM(m.price) > 3000000')
             ->getQuery()
             ->getResult()
         ;
     }
-    */
+    
 
     /*
     public function findOneBySomeField($value): ?Client
