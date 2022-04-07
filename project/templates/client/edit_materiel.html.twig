@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modifier un lien{% endblock %}
+
+{% block body %}
+    <h1>Client</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ lien.client.id }}</td>
+            </tr>
+            <tr>
+                <th>First_name</th>
+                <td>{{ lien.client.firstName }}</td>
+            </tr>
+            <tr>
+                <th>Last_name</th>
+                <td>{{ lien.client.lastName }}</td>
+            </tr>
+            <tr>
+                <th>Username</th>
+                <td>{{ lien.client.username }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2>Modifier un lien</h2>
+    
+    {{ form_start(form) }}
+        <div>
+            {{ form_row(form.quantite) }}
+            {{ form_row(form.materiel) }}
+            <div class="hidden">{{ form_row(form.client) }}</div>
+        </div>
+        <button class="btn">{{ button_label|default('Modifier') }}</button>
+    {{ form_end(form) }}
+    
+    <a href="{{ path('app_client_show', {'id': lien.client.id}) }}">Retour détails client</a>
+
+    <a href="{{ path('app_app') }}">Retour à l'accueil</a>
+
+{% endblock %}

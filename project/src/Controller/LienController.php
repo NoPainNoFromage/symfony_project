@@ -68,9 +68,11 @@ class LienController extends AbstractController
     public function delete(Request $request, Lien $lien, LienRepository $lienRepository): Response
     {
         if ($this->isCsrfTokenValid('delete'.$lien->getId(), $request->request->get('_token'))) {
+            $id_client = $lien->getClient()->getId();
             $lienRepository->remove($lien);
         }
 
-        return $this->redirectToRoute('app_lien_index', [], Response::HTTP_SEE_OTHER);
+        // return $this->redirectToRoute('app_lien_index', [], Response::HTTP_SEE_OTHER);
+        return $this->redirectToRoute('app_client_show', ['id'=>$id_client], Response::HTTP_SEE_OTHER);
     }
 }

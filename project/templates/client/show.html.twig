@@ -25,10 +25,46 @@
             </tr>
         </tbody>
     </table>
+    <a href="{{ path('app_client_edit', {'id': client.id}) }}">Modifier les informations du client</a>
+    <a href="{{ path('app_client_add_materiel', {'id': client.id}) }}">Ajouter materiel</a>
 
-    <a href="{{ path('app_client_index') }}">back to list</a>
+    <h2>Materiels</h2>
 
-    <a href="{{ path('app_client_edit', {'id': client.id}) }}">edit</a>
+    <div class="table-wrapper">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Reference</th>
+                    <th>Name</th>
+                    <th>Quantite</th>
+                    <th>Prix Unitaire</th>
+                    <th>Prix Total</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for lien in client.liens |sort((a, b) => a.materiel.reference <=> b.materiel.reference)%}
+                <tr>
+                    <td>{{ lien.materiel.reference }}</td>
+                    <td>{{ lien.materiel.name }}</td>
+                    <td>{{ lien.quantite }}</td>
+                    <td>{{ lien.materiel.price | number_format(2,',',' ')}} €</td>
+                    <td>{{ (lien.materiel.price * lien.quantite)| number_format(2,',',' ')}} €</td>
+                    <td>
+                        <a href="{{ path('app_materiel_show', {'id': lien.materiel.id}) }}">voir</a>
+                        <a href="{{ path('app_client_edit_materiel', {'id': lien.id}) }}">modifier</a>
+                        {{ include('lien/_delete_form.html.twig') }}
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="5">no records found</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
 
-    {{ include('client/_delete_form.html.twig') }}
+    <a href="{{ path('app_app') }}">Retour à l'accueil</a>
+
 {% endblock %}

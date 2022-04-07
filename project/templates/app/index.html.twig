@@ -27,8 +27,7 @@
                     <td>{{ row.qt }}</td>
                     <td>{{ (row.prix/100)|number_format(2, ',', ' ')}} €</td>
                     <td>
-                        <a href="{{ path('app_client_show', {'id': row.client.id}) }}">show</a>
-                        <a href="{{ path('app_client_edit', {'id': row.client.id}) }}">edit</a>
+                        <a href="{{ path('app_client_show', {'id': row.client.id}) }}">Voir</a>
                     </td>
                 </tr>
             {% else %}
@@ -39,5 +38,4 @@
             </tbody>
         </table>
     </div>
-    <a href="{{ path('app_client_new') }}">Create new</a>
 {% endblock %}

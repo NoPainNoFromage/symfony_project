@@ -73,6 +73,11 @@ class Client
         return $this;
     }
 
+    public function getNomComplet(): ?string
+    {
+        return $this->last_name.' '.$this->first_name;
+    }
+
     /**
      * @return Collection<int, Lien>
      */

@@ -63,7 +63,7 @@ class Materiel
 
     public function getPrice(): ?int
     {
-        return $this->price;
+        return $this->price/100;
     }
 
     public function setPrice(int $price): self
@@ -71,6 +71,11 @@ class Materiel
         $this->price = $price;
 
         return $this;
+    }
+
+    public function getSelectLabel(): ?string
+    {
+        return $this->reference.' - '.$this->name.' - '.$this->price  ;
     }
 
     /**
