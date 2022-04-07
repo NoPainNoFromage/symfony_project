@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\LienRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: LienRepository::class)]
 class Lien
@@ -22,6 +23,7 @@ class Lien
     private $materiel;
 
     #[ORM\Column(type: 'integer')]
+    #[Assert\Positive]
     private $quantite;
 
     public function getId(): ?int

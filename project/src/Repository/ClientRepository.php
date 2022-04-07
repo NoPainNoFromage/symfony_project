@@ -68,9 +68,25 @@ class ClientRepository extends ServiceEntityRepository
             ->select('c as client, SUM(l.quantite) as qt, SUM(m.price) as prix')
             ->join('c.liens', 'l')
             ->join('l.materiel', 'm')
-            ->groupBy('c')
-            ->having('SUM(l.quantite) > 30 and SUM(m.price) > 3000000')
+            ->groupBy('c, m.price')
+            ->having('SUM(l.quantite) > 30 and m.price > 3000000')
             ->orderBy('c.first_name')
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
+    /**
+     * @return Client[] Returns an array of Client objects
+    */
+    public function findBestClient()
+    {
+        return $this->createQueryBuilder('c')
+            ->select('c as client, SUM(l.quantite) as qt, SUM(m.price) as prix')
+            ->join('c.liens', 'l')
+            ->join('l.materiel', 'm')
+            ->groupBy('c')
+            ->orderBy('prix', 'desc')
             ->getQuery()
             ->getResult()
         ;

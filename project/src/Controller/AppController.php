@@ -16,4 +16,12 @@ class AppController extends AbstractController
             'result' => $clientRepository->findClientWithExpensiveMateriel(),
         ]);
     }
+
+    #[Route('/best', name: 'show_best_customers', methods: ['GET'])]
+    public function bestCustomers(ClientRepository $clientRepository): Response
+    {
+        return $this->render('client/show_best_customers.html.twig', [
+            'bestClients' => $clientRepository->findBestClient(),
+        ]);
+    }
 }

@@ -6,6 +6,7 @@ use App\Repository\MaterielRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: MaterielRepository::class)]
 class Materiel
@@ -22,6 +23,7 @@ class Materiel
     private $reference;
 
     #[ORM\Column(type: 'integer')]
+    #[Assert\Positive]
     private $price;
 
     #[ORM\OneToMany(mappedBy: 'materiel', targetEntity: Lien::class, orphanRemoval: true)]

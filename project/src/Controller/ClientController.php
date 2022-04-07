@@ -89,10 +89,8 @@ class ClientController extends AbstractController
     #[Route('/{id}/edit_materiel', name: 'app_client_edit_materiel', methods: ['GET', 'POST'])]
     public function editMateriel(Request $request, Lien $lien, LienRepository $lienRepository): Response
     {
-        dump(1);
         $form = $this->createForm(LienType::class, $lien);
         $form->handleRequest($request);
-        dump($form);
         if ($form->isSubmitted() && $form->isValid()) {
             $lienRepository->add($lien);
             return $this->redirectToRoute('app_client_show', ['id'=>$lien->getClient()->getId()], Response::HTTP_SEE_OTHER);
@@ -103,7 +101,6 @@ class ClientController extends AbstractController
             'form' => $form,
         ]);
     }
-
 
     #[Route('/{id}', name: 'app_client_delete', methods: ['POST'])]
     public function delete(Request $request, Client $client, ClientRepository $clientRepository): Response
