@@ -21,7 +21,7 @@
                     <td>{{ materiel.id }}</td>
                     <td>{{ materiel.name }}</td>
                     <td>{{ materiel.reference }}</td>
-                    <td>{{ materiel.price }}</td>
+                    <td>{{ materiel.getFormatedPrice }}</td>
                     <td>
                         <a href="{{ path('app_materiel_show', {'id': materiel.id}) }}">show</a>
                         <a href="{{ path('app_materiel_edit', {'id': materiel.id}) }}">edit</a>
@@ -35,5 +35,6 @@
             </tbody>
         </table>
     </div>
-    <a href="{{ path('app_materiel_new') }}">Create new</a>
+    <a href="{{ path('app_materiel_new') }}">Creer nouveau</a>
+    <a href="{{ path('app_app') }}">Retour à l'accueil</a>
 {% endblock %}

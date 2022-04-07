@@ -1,11 +1,11 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New Lien{% endblock %}
+{% block title %}Association{% endblock %}
 
 {% block body %}
-    <h1>Create new Lien</h1>
+    <h1>Associer du matériel à un client</h1>
 
     {{ include('lien/_form.html.twig') }}
 
-    <a href="{{ path('app_lien_index') }}">back to list</a>
+    <a href="{{ path('app_app') }}">Retour à l'accueil</a>
 {% endblock %}

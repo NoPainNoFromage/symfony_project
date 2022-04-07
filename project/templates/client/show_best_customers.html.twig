@@ -34,5 +34,8 @@
             </tbody>
         </table>
     </div>
-    <a href="{{ path('app_app') }}">Retour à l'accueil</a>
+    <div class="flex justify-between">
+        <a href="{{ path('app_app') }}">Retour à l'accueil</a>
+        nombre de lignes : {{bestClients|length}}
+    </div>
 {% endblock %}

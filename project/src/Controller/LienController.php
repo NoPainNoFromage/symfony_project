@@ -30,7 +30,7 @@ class LienController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $lienRepository->add($lien);
-            return $this->redirectToRoute('app_lien_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_client_show', ['id'=>$lien->getClient()->getId()], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('lien/new.html.twig', [

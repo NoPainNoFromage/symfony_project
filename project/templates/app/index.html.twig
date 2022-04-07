@@ -3,29 +3,23 @@
 {% block title %}Bienvenue!{% endblock %}
 
 {% block body %}
-<h1>Clients Riches avec blindé de matos!</h1>
+<h1>Clients avec blindé de matos!</h1>
     <div class="table-wrapper">
         <table class="table">
             <thead>
                 <tr>
-                    <th>Id</th>
-                    <th>First_name</th>
-                    <th>Last_name</th>
+                    <th>Nom</th>
+                    <th>Prenom</th>
                     <th>Username</th>
-                    <th>quantite</th>
-                    <th>prix</th>
                     <th>actions</th>
                 </tr>
             </thead>
             <tbody>
             {% for row in result %}
                 <tr>
-                    <td>{{ row.client.id }}</td>
-                    <td>{{ row.client.firstName }}</td>
                     <td>{{ row.client.lastName }}</td>
+                    <td>{{ row.client.firstName }}</td>
                     <td>{{ row.client.username }}</td>
-                    <td>{{ row.qt }}</td>
-                    <td>{{ (row.prix/100)|number_format(2, ',', ' ')}} €</td>
                     <td>
                         <a href="{{ path('app_client_show', {'id': row.client.id}) }}">Voir</a>
                     </td>
@@ -37,6 +31,11 @@
             {% endfor %}
             </tbody>
         </table>
+
     </div>
-    <a href="{{ path('show_best_customers') }}">Voir les meilleurs clients</a>
+    <div class="flex justify-between">
+        <a href="{{ path('app_lien_new') }}">Créer nouveau lien</a>
+        <a href="{{ path('show_best_customers') }}">Voir les meilleurs clients</a>
+        nombre de lignes : {{result |length}}
+    </div>
 {% endblock %}

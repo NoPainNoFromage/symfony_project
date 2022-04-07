@@ -6,6 +6,7 @@ use App\Repository\MaterielRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use PhpParser\Node\Expr\Cast\String_;
 use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: MaterielRepository::class)]
@@ -65,7 +66,7 @@ class Materiel
 
     public function getPrice(): ?int
     {
-        return $this->price/100;
+        return $this->price;
     }
 
     public function setPrice(int $price): self
@@ -77,7 +78,7 @@ class Materiel
 
     public function getSelectLabel(): ?string
     {
-        return $this->reference.' - '.$this->name.' - '.$this->price  ;
+        return $this->reference.' - '.$this->name.' - '.$this->getFormatedPrice();
     }
 
     /**
@@ -108,5 +109,10 @@ class Materiel
         }
 
         return $this;
+    }
+
+    public function getFormatedPrice(): ?String
+    {
+        return number_format(($this->price/100.0), 2, ',', ' ').' €';
     }
 }

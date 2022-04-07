@@ -48,8 +48,8 @@
                     <td>{{ lien.materiel.reference }}</td>
                     <td>{{ lien.materiel.name }}</td>
                     <td>{{ lien.quantite }}</td>
-                    <td>{{ lien.materiel.price | number_format(2,',',' ')}} €</td>
-                    <td>{{ (lien.materiel.price * lien.quantite)| number_format(2,',',' ')}} €</td>
+                    <td>{{ lien.materiel.getFormatedPrice }}</td>
+                    <td>{{ ((lien.materiel.price * lien.quantite)/100.0)| number_format(2,',',' ')}} €</td>
                     <td>
                         <a href="{{ path('app_materiel_show', {'id': lien.materiel.id}) }}">voir</a>
                         <a href="{{ path('app_client_edit_materiel', {'id': lien.id}) }}">modifier</a>
@@ -65,6 +65,10 @@
         </table>
     </div>
 
-    <a href="{{ path('app_app') }}">Retour à l'accueil</a>
+    
+    <div class="flex justify-between">
+        <a href="{{ path('app_app') }}">Retour à l'accueil</a>
+        nombre de lignes : {{client.liens |length}}
+    </div>
 
 {% endblock %}

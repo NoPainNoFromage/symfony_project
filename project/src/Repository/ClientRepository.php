@@ -65,12 +65,13 @@ class ClientRepository extends ServiceEntityRepository
     public function findClientWithExpensiveMateriel()
     {
         return $this->createQueryBuilder('c')
-            ->select('c as client, SUM(l.quantite) as qt, SUM(m.price) as prix')
+            ->select('c as client')
             ->join('c.liens', 'l')
             ->join('l.materiel', 'm')
-            ->groupBy('c, m.price')
-            ->having('SUM(l.quantite) > 30 and m.price > 3000000')
-            ->orderBy('c.first_name')
+            ->where('m.price > 3000000')
+            ->groupBy('c')
+            ->having('SUM(l.quantite) > 30')
+            ->orderBy('c.last_name')
             ->getQuery()
             ->getResult()
         ;
