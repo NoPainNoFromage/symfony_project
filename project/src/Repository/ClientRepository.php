@@ -83,7 +83,7 @@ class ClientRepository extends ServiceEntityRepository
     public function findBestClient()
     {
         return $this->createQueryBuilder('c')
-            ->select('c as client, SUM(l.quantite) as qt, SUM(m.price) as prix')
+            ->select('c as client, SUM(l.quantite) as qt, SUM(m.price * l.quantite) as prix')
             ->join('c.liens', 'l')
             ->join('l.materiel', 'm')
             ->groupBy('c')
